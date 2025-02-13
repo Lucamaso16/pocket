@@ -1,0 +1,40 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/bottom-nav.css' %}">
+
+<nav class="bottom-nav">
+    <!-- Home -->
+    <a href="/" title="Home">
+        <span class="icon">🏠</span>
+    </a>
+    
+    <!-- Scambi (TODO) -->
+    <a href="#" title="Scambi">
+        <span class="icon">🔄</span>
+    </a>
+    
+    <!-- Utente -->
+    <div class="user">
+        {% if user.is_authenticated %}
+            <form class="logout-link" action="{% url 'users:logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" title="Logout" aria-label="Logout">
+                    <span class="icon">👤</span>
+                </button>
+            </form>
+        {% else %}
+            <a href="{% url 'users:login' %}" title="Login">
+                <span class="icon">👤</span>
+            </a>
+        {% endif %}
+    </div>
+
+    <!-- Posts -->
+    <a href="{% url 'posts:list' %}" title="Posts">
+        <span class="icon">📰</span>
+    </a>
+
+    <!-- Info -->
+    <a href="/about" title="Info">
+        <span class="icon">ℹ️</span>
+    </a>
+</nav>
