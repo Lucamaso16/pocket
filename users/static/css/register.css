@@ -1,0 +1,13 @@
+h1 {
+    font-size: 1.5rem;
+}
+
+
+.errorlist {
+    color: #F00;
+    margin-left: 2rem;
+}
+
+.errorlist li::marker {
+    content: '🚨 ';
+}

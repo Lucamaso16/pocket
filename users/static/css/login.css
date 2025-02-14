@@ -31,3 +31,12 @@ a {
     border-radius: 10px;
     width: 125px;
 }
+
+.errorlist {
+    color: #F00;
+    margin-left: 2rem;
+}
+
+.errorlist li::marker {
+    content: '🚨 ';
+}
