@@ -1,8 +1,0 @@
-.errorlist {
-    color: #F00;
-    margin-left: 2rem;
-}
-
-.errorlist li::marker {
-    content: '🚨 ';
-}

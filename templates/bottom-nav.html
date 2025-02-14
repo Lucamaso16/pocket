@@ -1,4 +1,4 @@
-{% load static %}
+{% comment %} {% load static %}
 <link rel="stylesheet" href="{% static 'css/bottom-nav.css' %}">
 
 <nav class="bottom-nav">
@@ -8,7 +8,7 @@
     </a>
     
     <!-- Scambi (TODO) -->
-    <a href="#" title="Scambi">
+    <a href="/" title="Scambi">
         <span class="icon">🔄</span>
     </a>
     
@@ -29,7 +29,7 @@
     </div>
 
     <!-- Posts -->
-    <a href="{% url 'posts:list' %}" title="Posts">
+    <a href="{% url '/' %}" title="Posts">
         <span class="icon">📰</span>
     </a>
 
@@ -37,4 +37,4 @@
     <a href="/about" title="Info">
         <span class="icon">ℹ️</span>
     </a>
-</nav>
+</nav> {% endcomment %}
