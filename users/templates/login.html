@@ -1,7 +1,12 @@
 {% extends 'layout.html' %}
+{% load static %}
 
 {% block title %}
     User Login
+{% endblock %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
 {% endblock %}
 
 {% block content %}

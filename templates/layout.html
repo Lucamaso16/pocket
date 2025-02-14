@@ -10,6 +10,9 @@
         {% endblock %}
     </title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% comment %} Qua carico il css di una pagina specifica se serve {% endcomment %}
+    {% block extra_head %}
+    {% endblock %}
     <script src="{% static 'js/main.js' %}" defer></script>
 </head>
 <body>
