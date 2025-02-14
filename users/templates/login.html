@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-    User Login
+    Login
 {% endblock %}
 
 {% block extra_head %}
@@ -10,14 +10,14 @@
 {% endblock %}
 
 {% block content %}
-    <h1>User Login</h1>
+    <h1>Login</h1>
     <form class="form-with-validation" action="{% url 'users:login' %}" method="post">
         {% csrf_token %}
         {{ form }}
         {% if request.GET.next %}
             <input type="hidden" name="next" value="{{ request.GET.next }}" />
         {% endif %}
-        <button class="form-submit">Submit</button>
+        <button class="form-submit">Entra</button>
     </form>
 
     <a href="{% url 'users:register' %}">Crea un nuovo account</a>
