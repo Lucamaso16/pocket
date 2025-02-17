@@ -35,3 +35,6 @@ class CustomLoginView(LoginView):
 def user_logout(request):
     logout(request)
     return redirect('/')
+
+def profile_view(request):
+    return render(request, 'accounts/profile.html')

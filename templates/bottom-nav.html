@@ -15,7 +15,7 @@
     <!-- Utente -->
     <div class="user">
         {% if user.is_authenticated %}
-            <a href="/" title="Profilo">
+            <a href="{% url 'profile' %}" title="Profilo">
                 <span class="icon">👤</span>
             </a>
         {% else %}
