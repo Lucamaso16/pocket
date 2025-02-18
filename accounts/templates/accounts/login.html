@@ -1,3 +1,8 @@
+{% extends 'layout.html' %}
+
+{% block title %}Profilo{% endblock %}
+
+{% block content %}
 <h2>Login</h2>
 <form method="POST">
     {% csrf_token %}
@@ -5,3 +10,4 @@
     <button type="submit">Accedi</button>
 </form>
 <a href="{% url 'register' %}">Non hai un account? Registrati</a>
+{% endblock %}
