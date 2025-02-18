@@ -28,4 +28,5 @@ urlpatterns = [
     path('', views.homepage),
     path('about/', views.about),
     path('accounts/', include('accounts.urls')),
+    path('scambi/', include('scambi.urls')),
 ]
