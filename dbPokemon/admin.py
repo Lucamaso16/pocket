@@ -12,8 +12,8 @@ class EspansioneAdmin(admin.ModelAdmin):
     search_fields = ('nome',)
 
 class PokemonAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'rarita', 'espansione', 'isScambiabile')
-    search_fields = ('nome',)
+    list_display = ('pokedex', 'nome', 'rarita', 'espansione', 'isScambiabile')
+    search_fields = ('nome', 'pokedex')
     list_filter = ('isScambiabile',)
 
 admin.site.register(Rarita, RaritaAdmin)

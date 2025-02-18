@@ -24,6 +24,7 @@ class Espansione(models.Model):
     
 class Pokemon(models.Model):
     espansione = models.ForeignKey(Espansione, on_delete=models.CASCADE, related_name="pokemon")
+    pokedex = models.IntegerField()
     nome = models.CharField(max_length=100)
     rarita = models.ForeignKey(Rarita, on_delete=models.CASCADE)
     isScambiabile = models.BooleanField(default=False)
