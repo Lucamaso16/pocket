@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import BaseUserManager
-from django.contrib.auth import get_user_model
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, username, password=None, **extra_fields):
@@ -26,11 +25,3 @@ class CustomUser(AbstractUser):
     codice_amico = models.CharField(max_length=16, blank=True, null=True)
 
     objects = CustomUserManager()
-    
-# class OggettoScambio(models.Model):
-#     utente = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name="oggetti_scambio")
-#     pokemon = models.ForeignKey(Pokemon, on_delete=models.CASCADE)
-#     tipo = models.IntegerField(choices=TipoScambio.TIPO_SCELTA)
-
-#     def __str__(self):
-#         return f"{self.utente.username} {'cerca' if self.tipo == 0 else 'offre'} {self.pokemon.nome}"
