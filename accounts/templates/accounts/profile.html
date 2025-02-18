@@ -5,6 +5,8 @@
 {% block content %}
     {% if user == request.user %}
         <h2>Ciao, {{ user.username }}</h2>
+    {% else %}
+        <h2>Utente: {{ user.username }}</h2>
     {% endif %}
     
     <p>Codice amico: {{ user.codice_amico }}</p>
