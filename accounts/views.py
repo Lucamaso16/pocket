@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import logout
 from django.contrib import messages
@@ -36,3 +36,11 @@ def user_logout(request):
 
 def profile_view(request):
     return render(request, 'accounts/profile.html')
+
+def profile_view(request, user_id=None):
+    if user_id:
+        user = get_object_or_404(CustomUser, id=user_id)
+    else:
+        user = request.user
+    
+    return render(request, 'accounts/profile.html', {'user': user})

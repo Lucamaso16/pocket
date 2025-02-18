@@ -7,15 +7,15 @@
         <span class="icon">🏠</span>
     </a>
     
-    <!-- Scambi (TODO) -->
-    <a href="{% url 'general' %}" title="Scambi">
+    <!-- Scambi -->
+    <a href="{% url 'users_list' %}" title="Lista Utenti">
         <span class="icon">🔄</span>
     </a>
     
     <!-- Utente -->
     <div class="user">
         {% if user.is_authenticated %}
-            <a href="{% url 'profile' %}" title="Profilo">
+            <a href="{% url 'profile' user.id %}" title="Profilo">
                 <span class="icon">👤</span>
             </a>
         {% else %}

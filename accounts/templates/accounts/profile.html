@@ -3,28 +3,34 @@
 {% block title %}Profilo{% endblock %}
 
 {% block content %}
-<h2>Ciao, {{ user.username }}</h2>
-<p>Codice amico: {{user.codice_amico }}</p>
+    {% if user == request.user %}
+        <h2>Ciao, {{ user.username }}</h2>
+    {% endif %}
+    
+    <p>Codice amico: {{ user.codice_amico }}</p>
 
-<form action="{% url 'logout' %}" method="post">
-    {% csrf_token %}
-    <button type="submit">Logout</button>
-</form>
+    {% if user == request.user %}
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    {% endif %}
 
-<h3>La tua bacheca</h3>
-<table border="1">
-    <thead>
-        <tr>
-            <th>Espansione</th>
-            <th>Pacchetto</th>
-            <th>Cerco</th>
-            <th>Offro</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% comment %} TODO: metodo per il ciclo dei dati {% endcomment %}
-    </tbody>
-</table>
+    <h3>La tua bacheca</h3>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Espansione</th>
+                <th>Cerco</th>
+                <th>Offro</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% comment %} TODO: metodo per il ciclo dei dati {% endcomment %}
+        </tbody>
+    </table>
 
-<button>Aggiungi</button>
+    {% if user == request.user %}
+        <button>Aggiungi</button>
+    {% endif %}
 {% endblock %}
