@@ -1,8 +1,7 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
 from accounts.models import CustomUser
-from .models import CustomUser
+from .models import CustomUser, Scambio
+from dbPokemon.models import Espansione, Pokemon
 
 class RegisterForm(forms.ModelForm):
     codice_amico = forms.CharField(
@@ -38,4 +37,24 @@ class RegisterForm(forms.ModelForm):
             self.add_error("codice_amico", "Il codice amico deve contenere esattamente 16 cifre")
 
         return cleaned_data
+
+class ScambioForm(forms.ModelForm):
+    class Meta:
+        model = Scambio
+        fields = ["tipo", "espansione", "pokemon"]
+
+    tipo = forms.ChoiceField(choices=Scambio.SCELTE_TIPO, widget=forms.RadioSelect)
+    espansione = forms.ModelChoiceField(queryset=Espansione.objects.all(), empty_label="Seleziona un'espansione")
+    pokemon = forms.ModelChoiceField(queryset=Pokemon.objects.none(), empty_label="Seleziona un Pokémon")
+
+    def __init__(self, *args, **kwargs):
+        super(ScambioForm, self).__init__(*args, **kwargs)
+        if "espansione" in self.data:
+            try:
+                espansione_id = int(self.data.get("espansione"))
+                self.fields["pokemon"].queryset = Pokemon.objects.filter(espansione_id=espansione_id)
+            except (ValueError, TypeError):
+                self.fields["pokemon"].queryset = Pokemon.objects.none()
+        else:
+            self.fields["pokemon"].queryset = Pokemon.objects.none()
 

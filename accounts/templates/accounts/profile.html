@@ -1,8 +1,15 @@
 {% extends 'layout.html' %}
+{% load static %}
 
 {% block title %}Profilo{% endblock %}
 
 {% block content %}
+    <script src="{% static 'js/scambi.js' %}"></script>
+    
+    <script>
+        var pokemonUrl = "{% url 'get_pokemon_ajax' %}";
+    </script>
+
     {% if user == request.user %}
         <h2>Ciao, {{ user.username }}</h2>
     {% else %}
@@ -19,20 +26,47 @@
     {% endif %}
 
     <h3>La tua bacheca</h3>
+
+    
+
     <table border="1">
         <thead>
             <tr>
                 <th>Espansione</th>
+                <th>Pokémon</th>
                 <th>Cerco</th>
                 <th>Offro</th>
+                <th>Azioni</th>
             </tr>
         </thead>
         <tbody>
-            {% comment %} TODO: metodo per il ciclo dei dati {% endcomment %}
+            {% for scambio in scambi %}
+                <tr>
+                    <td>{{ scambio.espansione.nome }}</td>
+                    <td>{{ scambio.pokemon.nome }}</td>
+                    <td>{% if scambio.tipo == 0 %}✔{% else %}/{% endif %}</td>
+                    <td>{% if scambio.tipo == 1 %}✔{% else %}/{% endif %}</td>
+                    <td>
+                        <form action="{% url 'elimina_scambio' scambio.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit">Elimina</button>
+                        </form>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr><td colspan="5">Nessun scambio registrato</td></tr>
+            {% endfor %}
         </tbody>
     </table>
 
-    {% if user == request.user %}
-        <button>Aggiungi</button>
+    {% if is_own_profile %}
+        <h3>Aggiungi un nuovo scambio</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Aggiungi</button>
+        </form>
     {% endif %}
+
+    
 {% endblock %}

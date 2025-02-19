@@ -7,3 +7,4 @@ def general(request):
 def users_list(request):
     users = CustomUser.objects.filter(is_superuser=False)
     return render(request, 'scambi/users_list.html', {'users': users})
+

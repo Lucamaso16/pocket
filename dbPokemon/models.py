@@ -40,18 +40,3 @@ class Pokemon(models.Model):
         if self.espansione.isScambiAttivi and self.rarita.isScambiAttivi:
             self.isScambiabile = True
         super().save(*args, **kwargs)
-    
-# class TipoScambio(models.Model):
-#     CERCO = 0
-#     OFFRO = 1
-#     TIPO_SCELTA = [
-#         (CERCO, "Cerco"),
-#         (OFFRO, "Offro")
-#     ]
-
-#     utente = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name="scambi")
-#     pokemon = models.ForeignKey(Pokemon, on_delete=models.CASCADE)
-#     tipo = models.IntegerField(choices=TIPO_SCELTA)
-
-#     def __str__(self):
-#         return f"{self.utente.username} {'cerca' if self.tipo == 0 else 'offre'} {self.pokemon.nome}"
